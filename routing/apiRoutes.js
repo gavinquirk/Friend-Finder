@@ -9,16 +9,40 @@
 var friendData = require("../app/data/friends.js");
 
 // Routes
-module.exports = function(app) {
+module.exports = function (app) {
 
-  app.get("/api/friends", function(req, res) {
+  app.get("/api/friends", function (req, res) {
     res.json(friendData);
   })
 
-  app.post("/api/friends", function(req, res) {
+  app.post("/api/friends", function (req, res) {
     friendData.push(req.body);
-    console.log(friendData)
-})
+    // console.log(friendData)
+    var newUserScores = req.body.scores
+
+    function getTotal (array) {
+      var sum = 0
+      for (var i = 0; i < array.length; i++) {
+        sum = sum + parseInt(array[i])
+      }
+      return sum
+    }
+    var newUserSum = getTotal(newUserScores)
+    
+    function findMatch (sum, friendData) {
+      for (var i = 0; i < userArray.length; i++) {
+        getTotal(friendData)
+      }
+    }
+
+    // console.log(friendData)
+
+
+    // console.log(newSum)
+
+
+
+  })
 
 }
 //   // API POST Requests
