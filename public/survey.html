@@ -95,7 +95,7 @@
         </div>
         <hr>
         <div class='choiceCon'>
-            <h4>Question 6</h4>
+            <h4>Question 7</h4>
             <p>Sci fi is better than fantasy</p>
             <select id='q7'>
                 <option value="1">1</option>
@@ -171,8 +171,6 @@
 
                 // Post data to friends API
                 $.post("/api/friends", userData, function (data) {
-
-                    console.log(data)
 
                     // Grab the response, send to modal
                     $("#matchName").text(data.name);
