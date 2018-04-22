@@ -97,7 +97,7 @@
         <div class='choiceCon'>
             <h4>Question 6</h4>
             <p>Sci fi is better than fantasy</p>
-            <select id='q6'>
+            <select id='q7'>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -109,14 +109,36 @@
         <button id='submitButton' class='btn btn-large btn-primary m-4'>Submit</button>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="matchModal" tabindex="-1" role="dialog" aria-labelledby="matchModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="matchModalLabel">Your Closest Match</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h2 id='matchName'></h2>
+                    <hr><br>
+                    <img id='matchImage' src='https://static-cdn.jtvnw.net/jtv_user_pictures/bobross-profile_image-0b9dd167a9bb16b5-300x300.jpeg'>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script>
 
         // On Submit Button Click
         $('#submitButton').on('click', function () {
             event.preventDefault()
-            console.log('submit pressed')
 
             // Validate Form Function
             function validateForm() {
@@ -132,6 +154,7 @@
             // If form is valid...
             if (validateForm()) {
 
+                // Create userData object
                 var userData = {
                     name: $("#name").val(),
                     photo: $("#photo").val(),
@@ -142,22 +165,22 @@
                         $("#q4").val(),
                         $("#q5").val(),
                         $("#q6").val(),
+                        $("#q7").val()
                     ]
                 }
 
                 // Post data to friends API
                 $.post("/api/friends", userData, function (data) {
 
-                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                    // $("#match-name").text(data.name)
-                    // $("#match-img").attr("src", data.photo)
-
-                    // Show the modal with the best match
-                    // $("#results-modal").modal("toggle")
                     console.log(data)
-                    console.log('data sent')
+
+                    // Grab the response, send to modal
+                    $("#matchName").text(data.name);
+                    $("#matchImage").attr("src", data.photo);
+
+                    // Show the match modal
+                    $("#matchModal").modal()
                 });
-                // console.log(userData)
             } else {
                 alert('Please enter a name and picture at the top of the survey!')
             }
