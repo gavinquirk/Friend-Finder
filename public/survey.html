@@ -120,9 +120,12 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <h2 id='matchName'></h2>
-                    <hr><br>
-                    <img id='matchImage' src='https://static-cdn.jtvnw.net/jtv_user_pictures/bobross-profile_image-0b9dd167a9bb16b5-300x300.jpeg'>
+                    <h2 class='match-name'></h2>
+                    <hr>
+                    <br>
+                    <!-- <img id='match-image' src='https://static-cdn.jtvnw.net/jtv_user_pictures/bobross-profile_image-0b9dd167a9bb16b5-300x300.jpeg'> -->
+                    <img class='match-image' id="match-image">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -169,20 +172,58 @@
                     ]
                 }
 
+                // TODO: Loop through arrays and individually compare score data
+
+                // // Post data to friends API
+                // function sendData(userData) {
+                //     $.post("/api/friends", userData, function (data) {
+                //         console.log("Posting")
+                //     });
+                // }
+
+                // function compareData(userData) {
+                //     $.get("api/friends", function (data) {
+                //         console.log("Getting")
+                //         // Loop through friend api data
+                //         for (var i = 0; i < data.length; i++) {
+                //             var friend = data[i]
+                //             var friendScores = data[i].scores
+                //             var userScores = userData.scores
+                //             console.log(friendScores)
+                //             console.log(userScores)
+                //             // Loop through scores
+                //             for (var j = 0; j < userScores.length; j++) {
+                //                 var scoreCount = 
+
+                //             }
+
+
+                //         }
+
+
+                //     })
+                // }
+
+                // sendData(userData)
+                // compareData(userData)
+
                 // Post data to friends API
                 $.post("/api/friends", userData, function (data) {
-
                     // Grab the response, send to modal
-                    $("#matchName").text(data.name);
-                    $("#matchImage").attr("src", data.photo);
-
+                    $(".match-name").text(data.name);
+                    $(".match-image").attr("src", data.photo);
                     // Show the match modal
                     $("#matchModal").modal()
                 });
             } else {
                 alert('Please enter a name and picture at the top of the survey!')
             }
+
+
+
+
         })
+        // End of On Click
 
     </script>
 </body>

@@ -10,3 +10,16 @@ h4 {
   color: red;
   background: blue;
 }
+
+.match-image {
+  width: 10px;
+  overflow:auto;
+}
+
+#match-image {
+  width: 10px;
+}
+
+.modal-body {
+  overflow:auto;
+}
