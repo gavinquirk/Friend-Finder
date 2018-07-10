@@ -172,56 +172,19 @@
                     ]
                 }
 
-                // TODO: Loop through arrays and individually compare score data
-
-                // // Post data to friends API
-                // function sendData(userData) {
-                //     $.post("/api/friends", userData, function (data) {
-                //         console.log("Posting")
-                //     });
-                // }
-
-                // function compareData(userData) {
-                //     $.get("api/friends", function (data) {
-                //         console.log("Getting")
-                //         // Loop through friend api data
-                //         for (var i = 0; i < data.length; i++) {
-                //             var friend = data[i]
-                //             var friendScores = data[i].scores
-                //             var userScores = userData.scores
-                //             console.log(friendScores)
-                //             console.log(userScores)
-                //             // Loop through scores
-                //             for (var j = 0; j < userScores.length; j++) {
-                //                 var scoreCount = 
-
-                //             }
-
-
-                //         }
-
-
-                //     })
-                // }
-
-                // sendData(userData)
-                // compareData(userData)
-
-                // Post data to friends API
+                // Post data to friends API, append return data to modal, open modal
                 $.post("/api/friends", userData, function (data) {
-                    // Grab the response, send to modal
+
                     $(".match-name").text(data.name);
                     $(".match-image").attr("src", data.photo);
-                    // Show the match modal
+                    // Append with css styling to prevent new image from blowing up
+                    $(".match-image").css("height", "100%")
+                    $(".match-image").css("width", "100%")
                     $("#matchModal").modal()
                 });
             } else {
                 alert('Please enter a name and picture at the top of the survey!')
             }
-
-
-
-
         })
         // End of On Click
 
