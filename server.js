@@ -20,6 +20,11 @@ require("./routing/imgRoutes")(app)
 
 // Access to public directory
 app.use(express.static(__dirname + '/public'));
+// app.use('/css',express.static( 'public/assets/css'));
+// app.use(express.static('public'))
+
+
+
 
 // Listener
 app.listen(PORT, function() {
