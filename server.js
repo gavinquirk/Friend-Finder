@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 // Router
 require("./routing/apiRoutes")(app)
 require("./routing/htmlRoutes")(app)
+require("./routing/imgRoutes")(app)
+
+// Access to public directory
+app.use(express.static(__dirname + '/public'));
 
 // Listener
 app.listen(PORT, function() {
